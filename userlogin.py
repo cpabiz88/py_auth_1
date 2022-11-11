@@ -21,9 +21,9 @@ def user_login():
         for line in lines:
             if line.find(user_name + "::") != -1:
                 reference_password = line.split("::")[1][:-1]
+                entered_password = input("Password: ")
 
-        entered_password = input("Password: ")
-        if utils.md5(entered_password) == reference_password:
-            return True
-        else:
-            return utils.PASSWORD_INCORRECT
+                if utils.md5(entered_password) == reference_password:
+                    return True
+                else:
+                    return utils.PASSWORD_INCORRECT
