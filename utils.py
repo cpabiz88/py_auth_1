@@ -42,7 +42,6 @@ def clear_console():
 
 def restart_menu(text):
     input(text)
-    clear_console()
     print_menu()
 
 
@@ -62,6 +61,7 @@ def print_menu():
         else:
             restart_menu("Registration successfull!")
     elif answer == "l":
+        clear_console()
         login_result = login.user_login()
         if login_result != True:
             restart_menu(login_result)
