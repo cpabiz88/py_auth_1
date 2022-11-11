@@ -23,8 +23,8 @@ def user_login():
                 if line.find(user_name + "::") != -1:
                     reference_password = line.split("::")[1][:-1]
 
-            entered_password = input(f"Enter {user_name} password: ")
-            if utils.md5(entered_password) == reference_password:
-                utils.restart_menu("Login successful! Press Enter to restart!")
-            else:
-                utils.restart_menu("Wrong password!")
+        entered_password = input(f"Enter {user_name} password: ")
+        if utils.md5(entered_password) == reference_password:
+            utils.restart_menu("Login successful! Press Enter to restart!")
+        else:
+            utils.restart_menu("Wrong password!")

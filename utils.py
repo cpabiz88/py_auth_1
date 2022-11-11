@@ -21,7 +21,6 @@ def is_login_registered(reg_login):
     try:
         with open("users.db", "r", encoding="utf-8") as file:
             data = file.read()
-
     except FileNotFoundError:
         try:
             with open("users.db", "w+", encoding="utf-8") as file:
