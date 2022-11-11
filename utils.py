@@ -4,11 +4,12 @@ import userlogin as login
 import hashlib
 
 COLON_ERROR = "The name must not contain a colon character! Press Enter to restart!"
-LOGIN_ERROR = "Warning! The login must not be less than " \
-              "3 characters and more than 20 characters! Press Enter to restart!"
+LENGTH_ERROR = "Warning! The login must not be less than " \
+               "3 characters and more than 20 characters! Press Enter to restart!"
 PASSWORD_ERROR = "Warning! The password must not be less than 4 characters and more than" \
                  " 32 characters! Press Enter to restart!"
-REGISTERED_ERROR = "Warning! This login is already registered! Try choose another one! Press Enter to restart!"
+USER_EXISTS_ERROR = "Warning! This login is already registered! Try choose another one! Press Enter to restart!"
+USER_NOT_FOUND_ERROR = "Error! No such user!"
 
 
 def md5(password):
@@ -55,14 +56,17 @@ def print_menu():
 
     if answer == "r":
         clear_console()
-        if (reg.user_registration()):
-            restart_menu(f"User register successful! Press Enter to continue...")
+        registration_result = reg.user_registration()
+        if registration_result != True:
+            restart_menu(registration_result)
         else:
-            restart_menu(f"User register failed! Press Enter to continue...")
-        return
+            restart_menu("Registration successfull!")
     elif answer == "l":
-        login.user_login()
-        return
+        login_result = login.user_login()
+        if login_result != True:
+            restart_menu(login_result)
+        else:
+            restart_menu("Login successfull!")
     elif answer == "e":
         return
     else:

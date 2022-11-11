@@ -2,19 +2,17 @@ import utils
 
 
 def user_login():
-    utils.clear_console()
-    user_name = input("Enter your login: ")
+    user_name = input("login: ")
 
     if len(user_name) < 3 or len(user_name) > 20:
-        utils.restart_menu(utils.LOGIN_ERROR)
-        return
+        return utils.LENGTH_ERROR
 
-    if ":" in user_name:
-        utils.restart_menu(utils.COLON_ERROR)
-        return
+    elif ":" in user_name:
+        return utils.COLON_ERROR
 
-    if not utils.is_login_registered(user_name):
-        utils.restart_menu(f"Error! {user_name} user not found! Press Enter to restart!")
+    elif not utils.is_login_registered(user_name):
+        return utils.USER_NOT_FOUND_ERROR
+
     else:
         with open("users.db", "r") as file:
             lines = file.readlines()
@@ -23,8 +21,8 @@ def user_login():
                 if line.find(user_name + "::") != -1:
                     reference_password = line.split("::")[1][:-1]
 
-        entered_password = input(f"Enter {user_name} password: ")
+        entered_password = input("Password: ")
         if utils.md5(entered_password) == reference_password:
-            utils.restart_menu("Login successful! Press Enter to restart!")
+            return True
         else:
-            utils.restart_menu("Wrong password!")
+            return False
