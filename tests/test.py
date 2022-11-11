@@ -19,9 +19,6 @@ def is_login_registered(reg_login):
             return True
 
 
-
-
-
 class RegisterLoginTests(unittest.TestCase):
     def test_is_user_registered(self):
         answer = is_login_registered("john")
