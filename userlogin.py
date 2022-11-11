@@ -2,7 +2,7 @@ import utils
 
 
 def user_login():
-    user_name = input("login: ")
+    user_name = input("login: ").strip()
 
     if len(user_name) < 3 or len(user_name) > 20:
         return utils.LENGTH_ERROR

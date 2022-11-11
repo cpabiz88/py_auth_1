@@ -2,7 +2,7 @@ import utils
 
 
 def user_registration():
-    reg_login = input("Registration login: ")
+    reg_login = input("Registration login: ").strip()
 
     if len(reg_login) < 3 or len(reg_login) > 20:
         return utils.LENGTH_ERROR
