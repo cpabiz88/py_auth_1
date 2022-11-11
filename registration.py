@@ -23,13 +23,11 @@ def user_registration():
         return
 
     try:
+        result = -1
         with open('users.db', 'a+', encoding="utf-8") as file:
             result = file.write(reg_login + "::" + utils.md5(reg_password) + "\n")
             file.close()
     except IOError:
-        utils.restart_menu("Error! Some IO error while writing file users.db")
-    else:
-        if result > 0:
-            utils.restart_menu(f"User {reg_login} register successful! Press Enter to continue...")
-        else:
-            utils.restart_menu(f"User {reg_login} register failed! Press Enter to continue...")
+        print("Error! Some IO error while writing file users.db! Readonly file?")
+    finally:
+        return True if result > 0 else False

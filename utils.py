@@ -55,7 +55,10 @@ def print_menu():
 
     if answer == "r":
         clear_console()
-        reg.user_registration()
+        if (reg.user_registration()):
+            restart_menu(f"User register successful! Press Enter to continue...")
+        else:
+            restart_menu(f"User register failed! Press Enter to continue...")
         return
     elif answer == "l":
         login.user_login()
