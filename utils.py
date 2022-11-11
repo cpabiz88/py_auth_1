@@ -10,6 +10,7 @@ PASSWORD_ERROR = "Warning! The password must not be less than 4 characters and m
                  " 32 characters! Press Enter to restart!"
 USER_EXISTS_ERROR = "Warning! This login is already registered! Try choose another one! Press Enter to restart!"
 USER_NOT_FOUND_ERROR = "Error! No such user!"
+PASSWORD_INCORRECT = "Error! Incorrect password!"
 
 
 def md5(password):

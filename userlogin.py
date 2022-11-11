@@ -17,12 +17,13 @@ def user_login():
         with open("users.db", "r") as file:
             lines = file.readlines()
             file.close()
-            for line in lines:
-                if line.find(user_name + "::") != -1:
-                    reference_password = line.split("::")[1][:-1]
+
+        for line in lines:
+            if line.find(user_name + "::") != -1:
+                reference_password = line.split("::")[1][:-1]
 
         entered_password = input("Password: ")
         if utils.md5(entered_password) == reference_password:
             return True
         else:
-            return False
+            return utils.PASSWORD_INCORRECT
